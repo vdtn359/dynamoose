@@ -6,6 +6,8 @@ node_modules/
 .session.vim
 .vscode
 
+dist/
+
 # Ignore webstorm directories
 .idea/
 
