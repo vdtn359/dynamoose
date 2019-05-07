@@ -1,6 +1,7 @@
 'use strict';
 
 const dynamoose = require('../lib/');
+const builders = require('../lib/Builder');
 dynamoose.AWS.config.update({
   'accessKeyId': 'AKID',
   'secretAccessKey': 'SECRET',
@@ -107,6 +108,68 @@ describe('Scan', function () {
       }
       delete dynamoose.models.Dog;
       done();
+    });
+  });
+
+  describe('FilterExp Scan', () => {
+    it('FilterExp Scan contains', (done) => {
+      const Dog = dynamoose.model('Dog');
+
+      Dog.scan()
+        .filterExp(builders.contains('color', 'Brown'))
+        .exec((err, dogs) => {
+          should.not.exist(err);
+          dogs.length.should.eql(11);
+          done();
+        });
+    });
+
+    it('FilterExp Scan begins_with', (done) => {
+      const Dog = dynamoose.model('Dog');
+
+      Dog.scan()
+        .filterExp(builders.begins_with('breed', 'Jack'))
+        .exec((err, dogs) => {
+          should.not.exist(err);
+          dogs.length.should.eql(4);
+          done();
+        });
+    });
+
+    it('FilterExp Scan attribute_exists', (done) => {
+      const Dog = dynamoose.model('Dog');
+
+      Dog.scan()
+        .filterExp(builders.exists('details'))
+        .exec((err, dogs) => {
+          should.not.exist(err);
+          dogs.length.should.eql(2);
+          done();
+        });
+    });
+
+    it('FilterExp Scan and', (done) => {
+      const Dog = dynamoose.model('Dog');
+
+      Dog.scan()
+        .filterExp(builders.and(builders.contains('color', 'White'), builders.begins_with('breed', 'Jack')))
+        .exec((err, dogs) => {
+          should.not.exist(err);
+          dogs.length.should.eql(4);
+          done();
+        });
+    });
+
+    it('FilterExp Scan not', (done) => {
+      const Dog = dynamoose.model('Dog');
+
+      Dog.scan()
+        .filterExp(builders.or(builders.not(builders.eq('name', 'Blue'))))
+        .exec((err, dogs) => {
+          should.not.exist(err);
+          dogs.length.should.eql(19);
+          done();
+        });
     });
   });
 
