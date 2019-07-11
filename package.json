@@ -1,12 +1,12 @@
 {
   "name": "dynamoose-improved",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Dynamoose is a modeling tool for Amazon's DynamoDB (inspired by Mongoose)",
   "typings": "./dynamoose.d.ts",
   "homepage": "https://dynamoosejs.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dynamoosejs/dynamoose"
+    "url": "https://github.com/vdtn359/dynamoose"
   },
   "bugs": {
     "url": "https://github.com/dynamoosejs/dynamoose/issues"
@@ -78,16 +78,16 @@
     "ts-mocha": "6.0.0",
     "ts-node": "8.0.3",
     "tslint": "5.13.1",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.3333",
+    "aws-sdk": "2.395.0",
+    "@types/node": "11.11.0"
   },
   "dependencies": {
-    "@types/node": "11.11.0",
-    "aws-sdk": "2.395.0",
     "debug": "4.1.1",
-    "deep-equal": "1.0.1",
     "hooks": "0.3.2",
     "object-path": "0.11.4",
-    "q": "1.5.1"
+    "q": "1.5.1",
+    "deep-equal": "1.0.1"
   },
   "engines": {
     "node": ">=8.0.0"
